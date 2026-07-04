@@ -1,6 +1,8 @@
 // Mock data for preview - organized by segment type for easy maintenance
 // Each segment type has its own complete set of mock data
 
+import { formatPathPreview } from './pathPreview';
+
 // Shared data available to all segments (cross-segment references, environment)
 const sharedMockData: Record<string, unknown> = {
   // Environment variables (accessible via .Env.*)
@@ -1018,11 +1020,17 @@ export const mockData: Record<string, unknown> = {
 export const segmentTypeOverrides = segmentMockData;
 
 // Helper to get mock data with segment-specific data merged with shared data
-export function getMockDataForSegment(segmentType: string): Record<string, unknown> {
+export function getMockDataForSegment(
+  segmentType: string,
+  segmentOptions?: Record<string, unknown>
+): Record<string, unknown> {
   const segmentData = segmentMockData[segmentType];
-  if (segmentData) {
-    return { ...sharedMockData, ...segmentData };
+  const base = segmentData
+    ? { ...sharedMockData, ...segmentData }
+    : { ...sharedMockData, ...mockData };
+  // The path segment's display depends on its style options (style, separators, icons)
+  if (segmentType === 'path') {
+    return { ...base, Path: formatPathPreview(segmentOptions) };
   }
-  // Fallback to shared + default mock data
-  return { ...sharedMockData, ...mockData };
+  return base;
 }

@@ -145,7 +145,7 @@ export function getPreviewText(
     
     // Get segment-specific mock data (handles .Icon differently for music vs battery vs os)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const segmentMockData = getMockDataForSegment(segment.type) as Record<string, any>;
+    const segmentMockData = getMockDataForSegment(segment.type, segment.options) as Record<string, any>;
     
     // Helper to get nested value from mock data
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -371,7 +371,7 @@ export function getPreviewText(
   }
   
   // Third priority: generate preview based on segment type using segment-specific mock data
-  const segmentData = getMockDataForSegment(segment.type);
+  const segmentData = getMockDataForSegment(segment.type, segment.options);
   
   // Build preview text from segment's mock data
   const typeMap: Record<string, () => string> = {
