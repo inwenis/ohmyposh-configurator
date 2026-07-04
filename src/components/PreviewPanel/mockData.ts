@@ -51,9 +51,9 @@ const sharedMockData: Record<string, unknown> = {
       },
     },
     Path: {
-      Path: '~/dev/my-app',
+      Path: '~/projects/src/my-app',
       Folder: 'my-app',
-      Location: '~/dev/my-app',
+      Location: '~/projects/src/my-app',
     },
     Session: {
       UserName: 'user',
@@ -112,11 +112,11 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
   },
   
   path: {
-    Path: '~/dev/my-app',
+    Path: '~/projects/src/my-app',
     Folder: 'my-app',
-    Parent: '~/dev/',
-    Location: '~/dev/my-app',
-    PWD: '/home/user/dev/my-app',
+    Parent: '~/projects/src/',
+    Location: '~/projects/src/my-app',
+    PWD: '/home/user/projects/src/my-app',
     RootDir: false,
     StackCount: 0,
     Writable: true,

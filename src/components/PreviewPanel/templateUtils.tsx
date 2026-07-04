@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Segment } from '../../types/ohmyposh';
 import { getMockDataForSegment } from './mockData';
+import { formatPathPreview } from './pathPreview';
 import { 
   resolvePaletteColor, 
   isHexColor,
@@ -190,7 +191,7 @@ export function getPreviewText(
     
     // Handle path function - {{ path (.Format .Path) .Location }}
     result = result.replace(/\{\{\s*path\s+(?:\([^)]+\)|\.[\w.]+)\s+\.[\w.]+\s*\}\}/g, () => {
-      return getNestedValue('Path') || '~/dev/my-app';
+      return getNestedValue('Path') || formatPathPreview(segment.options);
     });
     
     // Handle now | date - {{ now | date "15:04:05" }}
